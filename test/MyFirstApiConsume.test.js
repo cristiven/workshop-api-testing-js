@@ -25,4 +25,59 @@ describe('First Api Tests', () => {
         expect(response.body.args).to.eql(query);
       });
 
+    it('Consume HEAD Service', async () =>{
+      const myQuery = {};
+
+      const response = await agent.head('https://httpbin.org/headers').query(myQuery);
+  
+      expect(response.status).to.equal(statusCode.OK);
+      expect(response.headers).to.have.property('access-control-allow-credentials', 'true');
+      expect(response.body).to.eql(myQuery);
+      
+    }); 
+    
+    it('Consume PATCH Service', async () => {
+      const body = {
+        name: 'Pepito',
+        city: 'New York'
+      };
+  
+      const response = await agent
+        .patch('https://httpbin.org/patch')
+        .send(body);
+  
+      expect(response.status).to.equal(statusCode.OK);
+      expect(response.body).to.have.property('headers');
+      expect(response.body.json).to.eql(body);
+    });
+
+    it('Consume PUT Service', async () => {
+      const body = {
+        name: 'Pepito',
+        city: 'New York'
+      };
+  
+      const response = await agent
+        .put('https://httpbin.org/put')
+        .set('Content-Type', 'application/json')
+        .send(body);
+  
+      expect(response.status).to.equal(statusCode.OK);
+      expect(response.body.json).to.eql(body);
+    });
+
+    it('Consume DELETE Service', async () => {
+      const body = {
+        name: 'Pepito',
+        city: 'New York'
+      };
+  
+      const response = await agent
+        .del('https://httpbin.org/delete')
+        .send(body);
+        
+      expect(response.status).to.equal(statusCode.OK);
+      expect(response.body.json).to.eql(body);
+    });
+
 });
