@@ -33,7 +33,6 @@ describe('First Api Tests', () => {
       expect(response.status).to.equal(statusCode.OK);
       expect(response.headers).to.have.property('access-control-allow-credentials', 'true');
       expect(response.body).to.eql(myQuery);
-      
     }); 
     
     it('Consume PATCH Service', async () => {
@@ -79,5 +78,4 @@ describe('First Api Tests', () => {
       expect(response.status).to.equal(statusCode.OK);
       expect(response.body.json).to.eql(body);
     });
-
 });
