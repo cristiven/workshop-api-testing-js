@@ -14,7 +14,7 @@ describe('Github Api Test', () => {
         .set('User-Agent', 'agent');
 
       expect(response.status).to.equal(statusCode.OK);
-      expect(response.body.description).equal('This is a Workshop about Api Testing in JavaScript');
+      expect(response.body.name).equal('workshop-api-testing-js-c');
     });
   });
 });
